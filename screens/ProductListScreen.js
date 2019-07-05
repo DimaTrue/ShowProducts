@@ -35,7 +35,7 @@ export default class ProductListScreen extends Component {
         </TouchableOpacity>
         <FlatList
           data={data}
-          keyExtractor={(item) => item.pk }
+          keyExtractor={(item) => `${item.pk}`}
           renderItem={({ item }) => <Text key={item.pk}>{item.pk}</Text>}
         />
       </View>

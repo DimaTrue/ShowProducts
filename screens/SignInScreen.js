@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 50,
     justifyContent: 'center',
-    paddingLeft: 100,
+    alignItems: 'center',
   }
 })

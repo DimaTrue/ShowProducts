@@ -1,18 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
 import AppNavigator from './navigation/AppNavigator'
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 export default class App extends Component {
   render() {
     return (
-      <AppNavigator />
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default class MyProductsScreen extends Component {
+export default class AddedProductsScreen extends Component {
   render() {
     return(
       <View style={styles.container}>
         <Text>
-          MyProductsScreen
+          AddedProductsScreen
         </Text>
       </View>
     )
