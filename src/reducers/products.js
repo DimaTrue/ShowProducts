@@ -13,7 +13,6 @@ export default function (state = initialState, action) {
       return { ...state, isLoading: true, };
 
     case products.GET_PRODUCTS_SUCCESS:
-      console.warn("reducer", action.payload)
       return { ...state, products: action.payload, isLoading: false };
 
     case products.GET_PRODUCTS_FAILURE:

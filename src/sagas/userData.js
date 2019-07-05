@@ -11,7 +11,7 @@ export function* watchSignUp() {
 export function* signUp({ payload }) {
 	try {
 		const result = yield signUpUser(payload);
-		yield put({ type: types.SIGN_UP_SUCCESS, payload: result, });
+		yield put({ type: types.SIGN_UP_SUCCESS, payload: result });
 	} catch (error) {
 		yield put({ type: types.SIGN_UP_FAILURE, payload: error });
 	}
@@ -23,10 +23,9 @@ export function* watchSignIn() {
 
 export function* signIn({ payload }) {
 	try {
-
 		const result = yield signInUser(payload);
 		yield AsyncStorage.setItem('userData', JSON.stringify(payload));
-		yield put({ type: types.SIGN_IN_SUCCESS, payload: result, });
+		yield put({ type: types.SIGN_IN_SUCCESS, payload: result.data.token, });
 	} catch (error) {
 		yield put({ type: types.SIGN_IN_FAILURE, payload: error });
 	}

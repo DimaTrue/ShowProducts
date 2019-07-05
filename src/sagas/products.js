@@ -9,8 +9,8 @@ export function* watchGetProducts() {
 
 export function* getProducts() {
 	try {
-    const result = yield call(getProductsData);
-    yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: result });
+		const result = yield call(getProductsData);
+    yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: result.data.data });
 	} catch (error) {
 		yield put({ type: types.GET_PRODUCTS_FAILURE, payload: error });
 	}

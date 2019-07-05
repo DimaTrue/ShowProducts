@@ -5,7 +5,7 @@ const initialState = {
   signUpResponse: {},
   isLogin: false,
   userData: '',
-  signInResponse: {},
+  error: '',
 }
 
 export default function (state = initialState, action) {
@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
       return { ...state, isLoading: true };
 
     case user.SIGN_IN_SUCCESS:
-      return { ...state, signInResponse: action.payload, isLoading: false, isLogin: true };
+      return { ...state, userData: action.payload, isLoading: false, isLogin: true };
 
     case user.SIGN_IN_FAILURE:
       return { ...state, signInResponse: action.payload, isLoading: false, isLogin: false };

@@ -23,45 +23,36 @@ export const requestWithHeaders = (method, path, params) => {
 
 
 export const signUpUser = (values) => {
-	axios({
+	return axios({
 		method: 'POST',
 		url: "http://light-it-04.tk/api/registration/",
 		data: values
 		//  data: {
-		//   username: 'tom24',
-		//   email: 'tom24@gmail.com',
+		//   username: 'tom25',
+		//   email: 'tom25@gmail.com',
 		//   password1: 'q1234567',
 		//   password2: 'q1234567',
 		//  },
 	})
-		.then(res => console.warn(res))
-		.catch(error => console.warn("ERRRRROR ", error))
 }
 
 export const signInUser = (values) => {
-	axios({
+	  return axios({
 		method: 'POST',
 		url: "http://light-it-04.tk/api/login/",
 		data: values
-			//   email: 'tom21@gmail.com',
+		//   email: 'tom21@gmail.com',
 		//   password1: 'q1234567',
 	})
-		.then(res => console.warn("login",res))
-		.catch(error => console.warn("ERRRRROR ", error))
 }
 
 export const signOutUser = (values) => {
-	axios({
+	return axios({
 		method: 'GET',
 		url: "http://light-it-04.tk/api/logout/",
 	})
-		.then(res => console.warn('logout',res))
-		.catch(error => console.warn("ERRRRROR ", error))
 }
 
-export const getProductsData =  () => {
-  axios.get(`http://light-it-04.tk/api/posters`)
-       .then(response => console.warn(response.data.data))
-       //.then(response => response)
-       .catch(error => console.warn(error))
+export const getProductsData = () => {
+	return axios.get(`http://light-it-04.tk/api/posters`)
 }
