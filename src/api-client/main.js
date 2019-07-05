@@ -23,17 +23,29 @@ export const requestWithHeaders = (method, path, params) => {
 
 
 export const signUpUser = (values) => {
-  axios({
-      method: 'POST',
-      url: "http://light-it-04.tk/api/registration/",
-			data: values
-      //  data: {
-      //   username: 'tom24',
-      //   email: 'tom24@gmail.com',
-      //   password1: 'q1234567',
-      //   password2: 'q1234567',
-      //  },
-    })
+	axios({
+		method: 'POST',
+		url: "http://light-it-04.tk/api/registration/",
+		data: values
+		//  data: {
+		//   username: 'tom24',
+		//   email: 'tom24@gmail.com',
+		//   password1: 'q1234567',
+		//   password2: 'q1234567',
+		//  },
+	})
 		.then(res => console.warn(res))
+		.catch(error => console.warn("ERRRRROR ", error))
+}
+
+export const signInUser = (values) => {
+	axios({
+		method: 'POST',
+		url: "http://light-it-04.tk/api/login/",
+		data: values
+			//   email: 'tom21@gmail.com',
+		//   password1: 'q1234567',
+	})
+		.then(res => console.warn("axios",res))
 		.catch(error => console.warn("ERRRRROR ", error))
 }

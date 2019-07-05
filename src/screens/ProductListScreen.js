@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, FlatList, AsyncStorage } from 'react-native';
 import axios from 'axios';
 
 
@@ -28,6 +28,14 @@ export default class ProductListScreen extends Component {
         <Text>
           ProductListScreen
         </Text>
+        <TouchableOpacity onPress={() => {
+          AsyncStorage.clear();
+          this.props.navigation.navigate('AuthLoading')
+          }}>
+          <Text>
+            Log Out
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProducts')}>
           <Text>
             Button

@@ -10,7 +10,7 @@ import SignUpScreen from '../screens/SignUpScreen'
 import ProductListScreen from '../screens/ProductListScreen'
 import MyProductsScreen from '../screens/AddedProductsScreen'
 
-export const AuthStack = createBottomTabNavigator({ SignUp: SignUpScreen, SignIn: SignInScreen });
+export const AuthStack = createBottomTabNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen });
 export const AppStack = createStackNavigator({ ProductList: ProductListScreen, MyProducts: MyProductsScreen });
 
 export default createAppContainer(createSwitchNavigator(
@@ -20,6 +20,6 @@ export default createAppContainer(createSwitchNavigator(
 		Auth: AuthStack,
 	},
 	{
-		initialRouteName: 'Auth',
+		initialRouteName: 'AuthLoading',
 	}
 ))

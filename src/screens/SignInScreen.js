@@ -1,50 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
-import { validate } from '../redux-form/validate';
 import { Field, reduxForm } from 'redux-form';
-import { RenderField } from '../redux-form/RenderField';
-import { SIGN_UP_INIT } from '../action-types/userData';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
-class SignUpScreen extends Component {
+import { validate } from '../redux-form/validate';
+import { RenderField } from '../redux-form/RenderField';
+import { SIGN_IN_INIT } from '../action-types/userData';
+
+class SignInScreen extends Component {
 
   submit = () => {
-    const { navigation, values, signUp } = this.props;
-    signUp(values);
-    navigation.navigate('SignIn');
+    const { values, signIn } = this.props;
+    signIn(values);
+    this.props.navigation.navigate('AuthLoading')
   };
 
   render() {
     const { handleSubmit } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={{paddingTop: 70}}>
-          SignUpScreen
+        <Text>
+          SignInScreen
         </Text>
         <View style={styles.container}>
-          <Field
-            name="username"
-            component={RenderField}
-            label="username"
-          />
           <Field
             name="email"
             component={RenderField}
             label="email"
           />
           <Field
-            name="password1"
+            name="password"
             component={RenderField}
             label="password"
           />
-          <Field
-            name="password2"
-            component={RenderField}
-            label="password-repeat"
-          />
           <View>
             <TouchableOpacity style={styles.sendBtn} onPress={handleSubmit(this.submit)} >
-              <Text style={styles.btnText}> Sign Up </Text>
+              <Text style={styles.btnText}> Sign In </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -54,19 +50,19 @@ class SignUpScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  values: state.form.register.values
+  values: state.form.login && state.form.login.values,
 })
 
 const mapDispatchToProps = dispatch => ({
-  signUp : (values) => dispatch({ type: SIGN_UP_INIT, payload: values})
+  signIn: (values) => dispatch({ type: SIGN_IN_INIT, payload: values })
 })
 
-const WrappedSignUp = connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);
+const WrappedSignIn = connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
 
 export default reduxForm({
-  form: 'register',
+  form: 'login',
   validate
-})(WrappedSignUp);
+})(WrappedSignIn);
 
 const styles = StyleSheet.create({
   container: {

@@ -21,6 +21,11 @@ export const validate = (values) => {
   } else if (values.password2 !== values.password1) {
     errors.password2 = 'Your passwords is not equal'
   }
+  if (!values.password) {
+    errors.password = 'Required'
+  } else if (values.password.length < 5) {
+    errors.password = 'Must be 5 characters or more'
+  }
   if (!values.post) {
     errors.post = 'Required'
   }
