@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, FlatList, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, FlatList} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
 
@@ -17,6 +18,11 @@ export default class ProductListScreen extends Component {
       .catch(error => console.warn(error))
   }
 
+  logOut = () => {
+    AsyncStorage.clear();
+    this.props.navigation.navigate('AuthLoading')
+  }
+
   render() {
     const { isLoading, data } = this.state;
 
@@ -28,17 +34,14 @@ export default class ProductListScreen extends Component {
         <Text>
           ProductListScreen
         </Text>
-        <TouchableOpacity onPress={() => {
-          AsyncStorage.clear();
-          this.props.navigation.navigate('AuthLoading')
-          }}>
+        <TouchableOpacity onPress={this.logOut}>
           <Text>
             Log Out
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProducts')}>
           <Text>
-            Button
+            AddedProducts
           </Text>
         </TouchableOpacity>
         <FlatList
