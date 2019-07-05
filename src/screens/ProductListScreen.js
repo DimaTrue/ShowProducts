@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import axios from 'axios';
+
+import { GET_PRODUCTS_INIT } from '../action-types/products';
 
 
-export default class ProductListScreen extends Component {
-
-  state = {
-    data: [],
-    // isLoading: true,
-  }
+class ProductListScreen extends Component {
 
   componentDidMount() {
-    axios.get(`http://light-it-04.tk/api/posters`)
-      // .then(response => console.warn(response.data.data))
-      .then(response => this.setState({ data: response.data.data }))
-      .catch(error => console.warn(error))
+    this.props.getProducts();
   }
 
   logOut = () => {
@@ -24,11 +18,10 @@ export default class ProductListScreen extends Component {
   }
 
   render() {
-    const { isLoading, data } = this.state;
-
-    // if(isLoading === true) {
-    //   return <ActivityIndicator />
-    // } else {
+    const { data, isLoading } = this.props;
+    if(isLoading === true) {
+      return <ActivityIndicator />
+    } else {
     return (
       <View style={styles.container}>
         <Text>
@@ -53,7 +46,18 @@ export default class ProductListScreen extends Component {
     )
   }
 }
-//}
+}
+
+const mapStateToProps = state => ({
+  data: state.products && state.products.products,
+  isLoading: state.products.isLoading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getProducts: () => dispatch({ type: GET_PRODUCTS_INIT }),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListScreen);
 
 const styles = StyleSheet.create({
   container: {

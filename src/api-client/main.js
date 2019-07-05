@@ -46,6 +46,22 @@ export const signInUser = (values) => {
 			//   email: 'tom21@gmail.com',
 		//   password1: 'q1234567',
 	})
-		.then(res => console.warn("axios",res))
+		.then(res => console.warn("login",res))
 		.catch(error => console.warn("ERRRRROR ", error))
+}
+
+export const signOutUser = (values) => {
+	axios({
+		method: 'GET',
+		url: "http://light-it-04.tk/api/logout/",
+	})
+		.then(res => console.warn('logout',res))
+		.catch(error => console.warn("ERRRRROR ", error))
+}
+
+export const getProductsData =  () => {
+  axios.get(`http://light-it-04.tk/api/posters`)
+       .then(response => console.warn(response.data.data))
+       //.then(response => response)
+       .catch(error => console.warn(error))
 }
